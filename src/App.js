@@ -1,18 +1,29 @@
 //import logo from './logo.svg';
-import './App.css';
-import ItemListContainer from './components/ItemListContainer';
-import Nabvar from './components/Nabvar';
+import NavBar from "./components/Nabvar";
+import ItemListContainer from "./containers/ItemListContainer";
+import ItemDetailContainer from "./containers/ItemDetailContainer";
+import Greeting from "./components/Greeting";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
+
   return (
     <>
-      <Nabvar />
-      <ItemListContainer 
-        saludo='hola mundo'
-      
-      />
+    <BrowserRouter> 
+    <NavBar />
+    <Greeting />
+    <Routes>
+      <Route path="/" element={<ItemListContainer />} />
+      <Route path="/category/:id" element={<ItemListContainer />} />
+      <Route path="/item/:id" element={<ItemDetailContainer />} />
+    
+    
+    </Routes>
+    </BrowserRouter>
+    
     </>
-  );
+    )
+  
 }
 
 export default App;

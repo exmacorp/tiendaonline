@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import BurguerButton from './BurguerButton'
 import CartWidget from './CartWidget'
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -29,7 +30,7 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Navbar;
 
 const NavContainer = styled.nav`
   h2{

@@ -1,32 +1,41 @@
-import React, {useState} from 'react'
+import { useEffect, useState } from "react";
 
-const ItemCount = ({ stock }) => {
-    const [cuenta, setCuenta] = useState(1)
+const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
+    const [count, setCount] =useState(0);
 
-    const sumar = () => {
-        if (cuenta < stock) {
-            setCuenta(cuenta + 1)
-        } else{
-            alert("no se puede sumar mas")
+    useEffect(() => {
+        setCount(initial);
+    },[]);
+
+    const increment = () => {
+        if (count < stock) {
+            setCount(count + 1);
         }
     }
 
-    const restar = () => {
-        setCuenta(Math.max(cuenta -1, 1))
+    const decrement = () => {
+        if (count > initial) {
+            setCount(count - 1);
+        }
     }
 
-
     return (
-        <>
-            <div className='flex gap-6 py-6 px-10'>
-                <button className='text-xl' onClick={restar}>-</button>
-                <p className='text-xl font-bold'>{cuenta}</p>
-                <button className='text-xl' onClick={sumar}>+</button>
+        <div>
+            
+            <div class="agregar">
+                <button class="btn btn-secondary btn-sm" onClick={decrement}>-</button>
+                {" Cant: "}{count}{"  Unid. "}
+                <button class="btn btn-secondary btn-sm" onClick={increment}>+</button>
+            <br /><br />
+            {
+                stock
+                ? <button class="btn btn-outline-dark btn-sm" onClick={() => onAdd(count)}>Agregar al Carrito</button>
+                : <button class="btn btn-outline-dark btn-sm" disabled>Agregar al Carrito</button>
+                
+            }
             </div>
-            <button>Agregar al Carrito</button>
 
-        </>
+        </div>
     )
 }
-
-export default ItemCount
+export default ItemCount;
