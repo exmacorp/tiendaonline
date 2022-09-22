@@ -5,7 +5,7 @@ const desafio = (task) => {
         if (is_ok) {
             setTimeout(() => {
                 resolve(task)
-            }, 2000);
+            }, 1000);
         } else {
             reject("Error")
         }
